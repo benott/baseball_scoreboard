@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:WindowedApplication xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" width="800" height="600" horizontalScrollPolicy="off" verticalScrollPolicy="off"
+	applicationComplete="applicationComplete()" xmlns:local="*" >
+
+    <mx:Script>
+    	<![CDATA[
+			import mx.managers.CursorManager;
+
+			[Bindable]
+			private var fx:int = 184;
+			[Bindable]
+			private var fy:int = 400;
+
+			
+			[Embed(source="/assets/cursor_white.png")]
+			private var CursorWhite:Class;
+
+			[Embed(source="/assets/cursor_black.png")]
+			private var CursorBlack:Class;
+
+			[Embed(source="/assets/cursor_red.png")]
+			private var CursorRed:Class;
+
+			[Embed(source="/assets/cursor_green.png")]
+			private var CursorGreen:Class;
+
+			[Embed(source="/assets/cursor_blue.png")]
+			private var CursorBlue:Class;
+
+			private function applicationComplete():void {
+				this.stage.displayState = StageDisplayState.FULL_SCREEN_INTERACTIVE;
+			}
+
+			private function colorChange(colorcode:uint):void {
+				foregroundCanvas.setStyle("backgroundColor",colorcode);
+			}
+			
+			private function scanLine(direction:String):void {
+				foregroundCanvas.removeAllChildren();
+				
+				var line:Canvas = new Canvas;
+				line.setStyle("backgroundColor",0xfffefefe);
+				line.name = "moveline";
+				foregroundCanvas.addChild(line);
+
+				var mover:Move = new Move;
+				mover.target = line;
+				
+					
+				if(direction == 'h')
+				{
+				line.height = 32;
+				line.width = 2;
+				mover.xBy = 288;
+				mover.duration = 2800;
+				}
+				
+				else
+					
+				{
+					line.height = 2;
+					line.width = 288;
+					mover.yBy = 32;
+					mover.duration = 800;
+				}
+				mover.end();
+				mover.play();
+
+			}
+			
+			private function cursorChange(cur:Class):void {
+				CursorManager.removeAllCursors();
+				CursorManager.setCursor(cur);
+			}
+			
+			private function resetAll():void {
+				CursorManager.removeAllCursors();
+				foregroundCanvas.setStyle("backgroundColor",0xff888888);
+				foregroundCanvas.removeAllChildren();
+			}
+			
+			
+    	]]>
+    </mx:Script>
+	<mx:Move id="move_h" target="{foregroundCanvas.getChildByName('moveline')}" xBy="288" duration="1800" />
+	<mx:Move id="move_v" target="{foregroundCanvas.getChildByName('moveline')}" yBy="32" duration="400" />
+	
+<mx:Canvas width="100%" height="100%" backgroundColor="#808080" id="maincolor">
+	<mx:Canvas width="800" height="300" backgroundColor="#808080" bottom="0" left="0" >
+		<mx:HBox>
+			
+			<mx:VBox>
+				<mx:Button label="red010" click="colorChange(0xff1a0000);" />
+				<mx:Button label="red020" click="colorChange(0xff330000);" />
+				<mx:Button label="red030" click="colorChange(0xff4d0000);" />
+				<mx:Button label="red040" click="colorChange(0xff660000);" />
+				<mx:Button label="red050" click="colorChange(0xff800000);" />
+				<mx:Button label="red060" click="colorChange(0xffb30000);" />
+				<mx:Button label="red070" click="colorChange(0xffcc0000);" />
+				<mx:Button label="red090" click="colorChange(0xffe60000);" />
+				<mx:Button label="red100" click="colorChange(0xffff0000);" />	
+			</mx:VBox>
+			<mx:VBox>
+				<mx:Button label="green010" click="colorChange(0xff001a00);" />
+				<mx:Button label="green020" click="colorChange(0xff003300);" />
+				<mx:Button label="green030" click="colorChange(0xff004d00);" />
+				<mx:Button label="green040" click="colorChange(0xff006600);" />
+				<mx:Button label="green050" click="colorChange(0xff008000);" />
+				<mx:Button label="green060" click="colorChange(0xff00b300);" />
+				<mx:Button label="green070" click="colorChange(0xff00cc00);" />
+				<mx:Button label="green090" click="colorChange(0xff00e600);" />
+				<mx:Button label="green100" click="colorChange(0xff00ff00);" />	
+			</mx:VBox>
+			<mx:VBox>
+				<mx:Button label="blue010" click="colorChange(0xff00001a);" />
+				<mx:Button label="blue020" click="colorChange(0xff000033);" />
+				<mx:Button label="blue030" click="colorChange(0xff00004d);" />
+				<mx:Button label="blue040" click="colorChange(0xff000066);" />
+				<mx:Button label="blue050" click="colorChange(0xff000080);" />
+				<mx:Button label="blue060" click="colorChange(0xff0000b3);" />
+				<mx:Button label="blue070" click="colorChange(0xff0000cc);" />
+				<mx:Button label="blue090" click="colorChange(0xff0000e6);" />
+				<mx:Button label="blue100" click="colorChange(0xff0000ff);" />	
+			</mx:VBox>
+			<mx:VBox>
+				<mx:Button label="white010" click="colorChange(0xff1a1a1a);" />
+				<mx:Button label="white020" click="colorChange(0xff333333);" />
+				<mx:Button label="white030" click="colorChange(0xff4d4d4d);" />
+				<mx:Button label="white040" click="colorChange(0xff666666);" />
+				<mx:Button label="white050" click="colorChange(0xff808080);" />
+				<mx:Button label="white060" click="colorChange(0xffb3b3b3);" />
+				<mx:Button label="white070" click="colorChange(0xffcccccc);" />
+				<mx:Button label="white090" click="colorChange(0xffe6e6e6);" />
+				<mx:Button label="white100" click="colorChange(0xfffefefe);" />	
+				
+			</mx:VBox>
+			<mx:VBox>
+				<mx:Button label="black" click="colorChange(0xff000000);" />
+				<mx:Button label="h_test" click="scanLine('h');" />
+				<mx:Button label="v_test" click="scanLine('v');" />
+				<mx:Button label="cur_white" click="cursorChange(CursorWhite);" />
+				<mx:Button label="cur_black" click="cursorChange(CursorBlack);" />
+				<mx:Button label="cur_red" click="cursorChange(CursorRed);" />
+				<mx:Button label="cur_green" click="cursorChange(CursorGreen);" />
+				<mx:Button label="cur_blue" click="cursorChange(CursorBlue);" />
+				<mx:Button label="reset" click="resetAll();" />	
+				
+			</mx:VBox>
+		</mx:HBox>
+
+	</mx:Canvas>
+</mx:Canvas>
+
+<mx:Canvas id="foregroundCanvas" x="{fx}" y="{fy}" width="288" height="32" includeInLayout="false" backgroundColor="#888888" horizontalScrollPolicy="off" verticalScrollPolicy="off" horizontalScrollPosition="0"  />
+
+
+</mx:WindowedApplication>

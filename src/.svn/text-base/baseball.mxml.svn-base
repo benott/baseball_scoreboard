@@ -1,0 +1,697 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:WindowedApplication xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" width="800" height="600" horizontalScrollPolicy="off" verticalScrollPolicy="off"
+	applicationComplete="applicationComplete()" xmlns:local="*" xmlns:controls="com.keaura.controls.*">
+
+    <mx:Script>
+    	<![CDATA[
+    		import com.keaura.controls.ScrollingText;
+    		import mx.controls.Alert;
+    		import mx.collections.ArrayCollection;
+    	    [Bindable]
+    		private var fx:int = 184;
+    		[Bindable]
+    		private var fy:int = 400;
+    		[Bindable]
+    		private var scrolldirection:String = '<';
+    		[Bindable]
+    		private var direction:String = '<';
+    		[Bindable]
+    		private var direction2:String = '<';
+    		[Bindable]
+    		private var direction3:String = '<';
+    		[Bindable]
+    		private var scrollspeed:int = 2;
+    		[Bindable]
+    		private var speed:int = 2;
+    		[Bindable]
+    		private var speed2:int = 2;
+    		[Bindable]
+    		private var speed3:int = 2;
+    		[Bindable]
+    		private var scrolltextcolor:uint = 0xFAFAFA;
+    		[Bindable]
+    		private var textcolor:uint = 0xFAFAFA;
+    		[Bindable]
+    		private var textcolor2:uint = 0xFAFAFA;
+    		[Bindable]
+    		private var textcolor3:uint = 0xFAFAFA;
+    		[Bindable]
+    		private var scrollbackgroundcolor:uint = 0x000000;
+    		[Bindable]
+    		private var backgroundcolor:uint = 0x000000;
+    		[Bindable]
+    		private var backgroundcolor2:uint = 0x000000;
+    		[Bindable]
+    		private var backgroundcolor3:uint = 0x000000;
+
+    		
+    		[Bindable]
+    		private var objectList:ArrayCollection = new ArrayCollection;
+    		
+    		private var currentFg:AbstractVideoObject = new AbstractVideoObject("NULL");
+    		
+    		private var scroller:ScrollingText;
+    		
+    		private function applicationComplete():void {
+    			this.stage.displayState = StageDisplayState.FULL_SCREEN_INTERACTIVE;
+    			createBuiltins();
+    		}
+    		
+    		private function loadModuleList():void {
+    			var dir:File = File.desktopDirectory.resolvePath("animations");
+    			for each (var f:File in dir.getDirectoryListing()) {
+    				objectList.addItem( new ModuleVideoObject(f.name, f.nativePath) );
+    			}
+    		}
+    		
+    		private function loadInForeground():void {
+    			if (availableList.selectedItem == null)
+    				return;
+    			if(currentFg != null) {
+    				currentFg.stop();
+    			}
+    			if(scroller != null) {
+    				scroller.stop();
+    			}
+    			currentFg = AbstractVideoObject(availableList.selectedItem);
+    			currentFg.horizontalScrollPolicy = 'off';
+    			currentFg.verticalScrollPolicy = 'off';
+    			foregroundCanvas.removeAllChildren();
+    			foregroundCanvas.setStyle('backgroundColor', 0x000000);
+    			foregroundCanvas.addChild(currentFg);
+    			currentFg.play();
+    		}
+    		
+    		private function loadText(textObject:TextInput):void {
+    			
+    			if(currentFg != null) {
+    				currentFg.stop();
+    			}
+    			if(scroller != null) {
+    				scroller.stop();
+    				scroller = null;
+    			}
+    			scroller = new ScrollingText
+    			scroller.width = 288;
+    			//scroller.height = 30;
+    			scroller.text = textObject.text;
+
+
+    			if(tab0.enabled == false) {
+    				scrolldirection = direction;
+    				scrollspeed = speed;
+    				scrolltextcolor = textcolor;
+    				scrollbackgroundcolor = backgroundcolor;
+    			}
+    			else if(tab1.enabled == false) {
+    				scrolldirection = direction2;
+    				scrollspeed = speed2;
+    				scrolltextcolor = textcolor2;
+    				scrollbackgroundcolor = backgroundcolor2;
+    			}
+    			else
+    			{
+    				scrolldirection = direction3;
+    				scrollspeed = speed3;
+    				scrolltextcolor = textcolor3;
+    				scrollbackgroundcolor = backgroundcolor3;
+    			}
+
+
+    			scroller.setStyle('color', scrolltextcolor);
+                scroller.setStyle('fontSize', 29);
+                scroller.setStyle('fontFamily', 'VAGRounded-Bold');
+    			//scroller.setStyle('fontWeight', 'bold');
+    			
+    			
+    			switch(scrolldirection){
+    				case '<':
+    					scroller.direction = 'rightToLeft';
+    					break;
+    				case '>':
+    					scroller.direction = 'leftToRight';
+    					break;
+    				case '^':
+    					scroller.direction = 'bottomToTop';
+    					break;
+    				case 'v':
+    					scroller.direction = 'topToBottom';
+    					break;
+    				case '-':
+    					scroller.direction = 'static';
+    					break;
+    				case '*':
+    					scroller.direction = 'blink';
+    					break;
+    			}
+    			scroller.speed = scrollspeed;
+    			scroller.start();
+    			foregroundCanvas.removeAllChildren();
+    			foregroundCanvas.setStyle('backgroundColor', scrollbackgroundcolor);
+    			foregroundCanvas.addChild(scroller);
+    			scroller.y -= 4; //scrolling text y position: smaller is higher!
+    			scroller.start();
+    		}
+    		
+    		private function blankAll():void {
+    			if(currentFg) {
+    				currentFg.stop();
+    			}
+    			if(scroller) {
+    				scroller.stop();
+    				scroller = null;
+    			}
+				foregroundCanvas.setStyle('backgroundColor', 0x000000);
+				foregroundCanvas.removeAllChildren()
+    		}
+
+    		
+    		private function showTab(tab:int):void {
+    			if(tab==0) {
+    				textlist.visible=true;
+    				advertisement.visible=false;
+    				others.visible=false;
+    				
+    				tab0.enabled = false;
+    				tab1.enabled = true;
+    				tab2.enabled = true;
+    				
+    			}
+    			else if(tab==1) {
+    				textlist.visible=false;
+    				advertisement.visible=true;
+    				others.visible=false;
+    				
+    				tab0.enabled = true;
+    				tab1.enabled = false;
+    				tab2.enabled = true;
+
+    			}
+    			else
+    			{
+    				textlist.visible=false;
+    				advertisement.visible=false;
+    				others.visible=true;
+    				
+    				tab0.enabled = true;
+    				tab1.enabled = true;
+    				tab2.enabled = false;
+
+    			}
+    		}
+    		
+    		//[Embed(source="assets/TakeMeOutToTheBallgame.swf")]
+    		//private var take:Class; 
+    		
+    		private function createBuiltins():void {
+    		//	objectList.addItem(new SWFLoaderVideoObject("Take Me Out SWFLoader", take));
+    			//objectList.addItem(new SWCVideoObject("Take Me Out", Takemeouttotheballgame));
+                //objectList.addItem(new SWCVideoObject("testanimation", test1));
+                //objectList.addItem(new SWCVideoObject("testanimation2", test2));
+                objectList.addItem(new SWCVideoObject("Out", out));
+                objectList.addItem(new SWCVideoObject("Flyout", flyout));
+                //objectList.addItem(new SWCVideoObject("Strikeout white", strikeout));
+                objectList.addItem(new SWCVideoObject("Strikeout", strikeoutblack));
+                //objectList.addItem(new SWCVideoObject("Strikeout 2 white", strikeout2));
+                objectList.addItem(new SWCVideoObject("Strikeout 2", strikeout2black));
+
+                //objectList.addItem(new SWCVideoObject("Walk white", walk));
+                objectList.addItem(new SWCVideoObject("Walk", walkblack));
+
+
+                objectList.addItem(new SWCVideoObject("Basehit", basehit));
+                objectList.addItem(new SWCVideoObject("Double", double));
+                objectList.addItem(new SWCVideoObject("Triple", triple));
+                objectList.addItem(new SWCVideoObject("Score", score));
+
+                objectList.addItem(new SWCVideoObject("Bases Loaded", basesloaded));
+                objectList.addItem(new SWCVideoObject("Double Play", doubleplay));
+                objectList.addItem(new SWCVideoObject("Stolen Base", stolenbase));
+
+                objectList.addItem(new SWCVideoObject("Homerun", homerun));
+                objectList.addItem(new SWCVideoObject("Homerun Awesome", awesome));
+
+                objectList.addItem(new SWCVideoObject("Homerun 1 Solo", hr1rbi));
+                objectList.addItem(new SWCVideoObject("Homerun 2 Two-Run", hr2rbi));
+                objectList.addItem(new SWCVideoObject("Homerun 3 Three-Run", hr3rbi));
+                objectList.addItem(new SWCVideoObject("Homerun 4 Grandslam", hr4rbi));
+                objectList.addItem(new SWCVideoObject("Hit by pitch", hp));
+                //objectList.addItem(new SWCVideoObject("PlayerSuchtFrau", playersuchtfrau));
+ 
+
+                //objectList.addItem(new SWCVideoObject("China", china));
+                objectList.addItem(new SWCVideoObject("China simple", china_simple));
+                //objectList.addItem(new SWCVideoObject("Germany", germany));
+                objectList.addItem(new SWCVideoObject("Germany simple", germany_simple));
+                objectList.addItem(new SWCVideoObject("USA simple", usa_simple));
+                objectList.addItem(new SWCVideoObject("Venezuela simple", venezuela_simple));
+ 
+
+//                objectList.addItem(new SWCVideoObject("GER-CHN", gerchn));
+//                objectList.addItem(new SWCVideoObject("USA-VEN", usaven));
+//                objectList.addItem(new SWCVideoObject("VEN-CHN", venchn));
+                objectList.addItem(new SWCVideoObject("USA-GER", usager));
+                objectList.addItem(new SWCVideoObject("CHN-USA", chnusa));
+                objectList.addItem(new SWCVideoObject("GER-VEN", gerven));
+
+
+                objectList.addItem(new SWCVideoObject("News", news));
+                objectList.addItem(new SWCVideoObject("Party Freitag", fiva));
+                objectList.addItem(new SWCVideoObject("Bayernhafen", bayernhafen));
+                objectList.addItem(new SWCVideoObject("Arcaden", arcaden));
+                objectList.addItem(new SWCVideoObject("Arcaden stumm", arcadenstumm));
+                objectList.addItem(new SWCVideoObject("Arcaden grau", arcaden_grey));
+                objectList.addItem(new SWCVideoObject("Arcaden grau stumm", arcadengreystumm));
+                objectList.addItem(new SWCVideoObject("Maschek", maschek));
+                objectList.addItem(new SWCVideoObject("Subway", subway));
+
+                objectList.addItem(new SWCVideoObject("Sparkasse", sparkasse));
+                objectList.addItem(new SWCVideoObject("WM Werbung", wm200901));
+                objectList.addItem(new SWCVideoObject("Made With Love", madewithlove));
+
+
+
+
+
+
+    		}
+    		
+    		
+    		
+    		
+//SAVE AND LOAD TEXT
+            /** File filter instance */
+            protected var filter   :FileFilter    = new FileFilter("Scoreboard", "*.scoreboard", "SCOREBOARD;");
+            /** File save instance */
+            protected var fileSave :FileReference = new FileReference();
+            /** File load instance */
+            protected var fileLoad :FileReference = new FileReference();
+            /** @inheritDoc */
+            protected override function createChildren():void {
+                super.createChildren();
+                saveButton.addEventListener(MouseEvent.CLICK, saveHandler);
+                loadButton.addEventListener(MouseEvent.CLICK, loadHandler);
+            }
+            /**
+             * @private
+             * File save
+             */
+            protected function saveHandler(event:MouseEvent):void {            	
+                var sjisbytes:ByteArray = new ByteArray();
+                sjisbytes.writeMultiByte(text01.text, "utf8");
+                sjisbytes.writeMultiByte('\r', "utf8");
+                sjisbytes.writeMultiByte(text02.text, "utf8");
+                sjisbytes.writeMultiByte('\r', "utf8");
+                sjisbytes.writeMultiByte(text03.text, "utf8");
+                sjisbytes.writeMultiByte('\r', "utf8");
+                sjisbytes.writeMultiByte(text04.text, "utf8");
+                sjisbytes.writeMultiByte('\r', "utf8");
+                sjisbytes.writeMultiByte(text05.text, "utf8");
+                sjisbytes.writeMultiByte('\r', "utf8");
+                sjisbytes.writeMultiByte(text06.text, "utf8");
+                sjisbytes.writeMultiByte('\r', "utf8");
+                sjisbytes.writeMultiByte(text07.text, "utf8");
+                sjisbytes.writeMultiByte('\r', "utf8");
+                sjisbytes.writeMultiByte(text08.text, "utf8");
+                sjisbytes.writeMultiByte('\r', "utf8");
+                sjisbytes.writeMultiByte(text09.text, "utf8");
+                sjisbytes.writeMultiByte('\r', "utf8");
+                sjisbytes.writeMultiByte(text10.text, "utf8");
+                sjisbytes.writeMultiByte('\r', "utf8");
+                sjisbytes.writeMultiByte(text11.text, "utf8");
+                sjisbytes.writeMultiByte('\r', "utf8");
+                sjisbytes.writeMultiByte(text12.text, "utf8");
+                sjisbytes.writeMultiByte('\r', "utf8");
+                sjisbytes.writeMultiByte(text13.text, "utf8");
+                sjisbytes.writeMultiByte('\r', "utf8");
+                sjisbytes.writeMultiByte(text14.text, "utf8");
+                sjisbytes.writeMultiByte('\r', "utf8");
+                sjisbytes.writeMultiByte(text15.text, "utf8");
+                sjisbytes.writeMultiByte('\r', "utf8");
+                sjisbytes.writeMultiByte(text16.text, "utf8");
+                sjisbytes.writeMultiByte('\r', "utf8");
+                sjisbytes.writeMultiByte(text17.text, "utf8");
+                sjisbytes.writeMultiByte('\r', "utf8");
+                sjisbytes.writeMultiByte(text18.text, "utf8");
+                sjisbytes.writeMultiByte('\r', "utf8");
+                sjisbytes.writeMultiByte(text19.text, "utf8");
+                sjisbytes.writeMultiByte('\r', "utf8");
+                sjisbytes.writeMultiByte(text20.text, "utf8");
+                sjisbytes.writeMultiByte('\r', "utf8");
+                sjisbytes.writeMultiByte(ad01.text, "utf8");
+                sjisbytes.writeMultiByte('\r', "utf8");
+                sjisbytes.writeMultiByte(ad02.text, "utf8");
+                sjisbytes.writeMultiByte('\r', "utf8");
+                sjisbytes.writeMultiByte(ad03.text, "utf8");
+                sjisbytes.writeMultiByte('\r', "utf8");
+                sjisbytes.writeMultiByte(ad04.text, "utf8");
+                sjisbytes.writeMultiByte('\r', "utf8");
+                sjisbytes.writeMultiByte(ad05.text, "utf8");
+                sjisbytes.writeMultiByte('\r', "utf8");
+                sjisbytes.writeMultiByte(ad06.text, "utf8");
+                sjisbytes.writeMultiByte('\r', "utf8");
+                sjisbytes.writeMultiByte(ad07.text, "utf8");
+                sjisbytes.writeMultiByte('\r', "utf8");
+                sjisbytes.writeMultiByte(ad08.text, "utf8");
+                sjisbytes.writeMultiByte('\r', "utf8");
+                sjisbytes.writeMultiByte(ad09.text, "utf8");
+                sjisbytes.writeMultiByte('\r', "utf8");
+                sjisbytes.writeMultiByte(ad10.text, "utf8");
+                sjisbytes.writeMultiByte('\r', "utf8");
+                sjisbytes.writeMultiByte(special01.text, "utf8");
+                sjisbytes.writeMultiByte('\r', "utf8");
+                sjisbytes.writeMultiByte(special02.text, "utf8");
+                sjisbytes.writeMultiByte('\r', "utf8");
+                sjisbytes.writeMultiByte(special03.text, "utf8");
+                sjisbytes.writeMultiByte('\r', "utf8");
+                sjisbytes.writeMultiByte(special04.text, "utf8");
+                sjisbytes.writeMultiByte('\r', "utf8");
+                sjisbytes.writeMultiByte(special05.text, "utf8");
+                sjisbytes.writeMultiByte('\r', "utf8");
+                sjisbytes.writeMultiByte(special06.text, "utf8");
+                sjisbytes.writeMultiByte('\r', "utf8");
+                sjisbytes.writeMultiByte(special07.text, "utf8");
+                sjisbytes.writeMultiByte('\r', "utf8");
+                sjisbytes.writeMultiByte(special08.text, "utf8");
+                sjisbytes.writeMultiByte('\r', "utf8");
+                sjisbytes.writeMultiByte(special09.text, "utf8");
+                sjisbytes.writeMultiByte('\r', "utf8");
+                sjisbytes.writeMultiByte(special10.text, "utf8");
+                sjisbytes.writeMultiByte('\r', "utf8");
+                fileSave.save(sjisbytes, "default.scoreboard");
+            }
+            /**
+             * @private
+             * File load
+             */
+            protected function loadHandler(event:MouseEvent):void {
+                fileLoad.browse([filter]);
+                fileLoad.addEventListener(Event.SELECT,   fileSelectHandler);
+                fileLoad.addEventListener(Event.COMPLETE, fileCompleteHandler);
+            }
+            /**
+             * @private
+             * File Selected
+             */
+            protected function fileSelectHandler(event:Event):void {
+                fileLoad.load();
+            }
+            /**
+             * @private
+             * File Load Complete
+             */
+            protected function fileCompleteHandler(event:Event):void {
+                var textfile:String = fileLoad.data.readMultiByte(fileLoad.data.length, "utf8");
+                var textarray:Array = textfile.split('\r');
+                text01.text = textarray[0];
+                text02.text = textarray[1];
+                text03.text = textarray[2];
+                text04.text = textarray[3];
+                text05.text = textarray[4];
+                text06.text = textarray[5];
+                text07.text = textarray[6];
+                text08.text = textarray[7];
+                text09.text = textarray[8];
+                text10.text = textarray[9];
+                text11.text = textarray[10];
+                text12.text = textarray[11];
+                text13.text = textarray[12];
+                text14.text = textarray[13];
+                text15.text = textarray[14];
+                text16.text = textarray[15];
+                text17.text = textarray[16];
+                text18.text = textarray[17];
+                text19.text = textarray[18];
+                text20.text = textarray[19];
+                ad01.text = textarray[20];
+                ad02.text = textarray[21];
+                ad03.text = textarray[22];
+                ad04.text = textarray[23];
+                ad05.text = textarray[24];
+                ad06.text = textarray[25];
+                ad07.text = textarray[26];
+                ad08.text = textarray[27];
+                ad09.text = textarray[28];
+                ad10.text = textarray[29];
+                special01.text = textarray[30];
+                special02.text = textarray[31];
+                special03.text = textarray[32];
+                special04.text = textarray[33];
+                special05.text = textarray[34];
+                special06.text = textarray[35];
+                special07.text = textarray[36];
+                special08.text = textarray[37];
+                special09.text = textarray[38];
+                special10.text = textarray[39];
+            }
+
+    	]]>
+    </mx:Script>
+	<mx:HBox width="798" height="598" horizontalScrollPolicy="off" verticalScrollPolicy="off">
+	   <mx:VBox width="150">
+	   	<mx:Canvas height="90" width="150">
+	       <mx:Button label=" Up" click="fy -= 1" width="60" x="45" y="15"/>
+	       <mx:Button label=" Down" click="fy += 1" width="60" x="45" y="65" />
+	       <mx:Button label=" Left"  click="fx -= 1" width="60" x="10" y="40" />
+	       <mx:Button label=" Right" click="fx += 1" width="60" x="80" y="40"/>
+	   	</mx:Canvas>
+           <mx:Spacer height="10" />
+			<mx:Button label="v     Load     v" width="150" click="loadInForeground()" />
+           <mx:List id="availableList" width="100%" height="350" dataProvider="{objectList}" itemRenderer="ObjectRenderer" doubleClickEnabled="true" doubleClick="loadInForeground();" />
+           <mx:Button label="&lt;-    Blank    -&gt;" width="150" click="blankAll();" toolTip="Clear all animations" />
+	   </mx:VBox>
+	   <mx:Canvas id="canvasHold" width="640" height="560" horizontalScrollPolicy="off" verticalScrollPolicy="off">
+	   
+	   <mx:Canvas width="500" height="40" x="40" y="5" id="buttons">
+	   	<mx:HBox>
+	   		<mx:Button width="80" label="Spieler" id="tab0" click="showTab(0);" enabled="false" />
+	   		<mx:Button width="80" label="Werbung" id="tab1" click="showTab(1);" />
+	   		<mx:Button width="80" label="Sonstiges" id="tab2" click="showTab(2);" />
+	   	</mx:HBox>
+	   </mx:Canvas>
+	   
+	   <mx:Canvas id="textlist" width="600" height="320" x="0" y="50" backgroundAlpha=".1" backgroundColor="#000000">
+	   <mx:HBox>
+	   <mx:VBox left="10" top="10" verticalAlign="middle" horizontalAlign="center">
+	   	<mx:HBox height="320" width="410">
+	   		<mx:VBox width="200" height="300">
+	   			<mx:HBox>
+	   				<mx:TextInput width="160" id="text01" /><mx:Button label="{direction}" paddingLeft="2" width="28" click="loadText(text01)" enabled="{text01.text.length > 0}" tabEnabled="false" />
+	   			</mx:HBox>
+	   			<mx:HBox>
+	   				<mx:TextInput width="160" id="text02" /><mx:Button label="{direction}" paddingLeft="2" width="28" click="loadText(text02)" enabled="{text02.text.length > 0}" tabEnabled="false" />
+	   			</mx:HBox>
+	   			<mx:HBox>
+	   				<mx:TextInput width="160" id="text03" /><mx:Button label="{direction}" paddingLeft="2" width="28" click="loadText(text03)" enabled="{text03.text.length > 0}" tabEnabled="false" />
+	   			</mx:HBox>
+	   			<mx:HBox>
+	   				<mx:TextInput width="160" id="text04" /><mx:Button label="{direction}" paddingLeft="2" width="28" click="loadText(text04)" enabled="{text04.text.length > 0}" tabEnabled="false" />
+	   			</mx:HBox>
+	   			<mx:HBox>
+	   				<mx:TextInput width="160" id="text05" /><mx:Button label="{direction}" paddingLeft="2" width="28" click="loadText(text05)" enabled="{text05.text.length > 0}" tabEnabled="false" />
+	   			</mx:HBox>
+	   			<mx:HBox>
+	   				<mx:TextInput width="160" id="text06" /><mx:Button label="{direction}" paddingLeft="2" width="28" click="loadText(text06)" enabled="{text06.text.length > 0}" tabEnabled="false" />
+	   			</mx:HBox>
+	   			<mx:HBox>
+	   				<mx:TextInput width="160" id="text07" /><mx:Button label="{direction}" paddingLeft="2" width="28" click="loadText(text07)" enabled="{text07.text.length > 0}" tabEnabled="false" />
+	   			</mx:HBox>
+	   			<mx:HBox>
+	   				<mx:TextInput width="160" id="text08" /><mx:Button label="{direction}" paddingLeft="2" width="28" click="loadText(text08)" enabled="{text08.text.length > 0}" tabEnabled="false" />
+	   			</mx:HBox>
+	   			<mx:HBox>
+	   				<mx:TextInput width="160" id="text09" /><mx:Button label="{direction}" paddingLeft="2" width="28" click="loadText(text09)" enabled="{text09.text.length > 0}" tabEnabled="false" />
+	   			</mx:HBox>
+	   			<mx:HBox>
+	   				<mx:TextInput width="160" id="text10" /><mx:Button label="{direction}" paddingLeft="2" width="28" click="loadText(text10)" enabled="{text10.text.length > 0}" tabEnabled="false" />
+	   			</mx:HBox>
+	   		</mx:VBox>
+	   		<mx:VBox width="200" height="300">
+	   			<mx:HBox>
+	   				<mx:TextInput width="160" id="text11" /><mx:Button label="{direction}" paddingLeft="2" width="28" click="loadText(text11)" enabled="{text11.text.length > 0}" tabEnabled="false" />
+	   			</mx:HBox>
+	   			<mx:HBox>
+	   				<mx:TextInput width="160" id="text12" /><mx:Button label="{direction}" paddingLeft="2" width="28" click="loadText(text12)" enabled="{text12.text.length > 0}" tabEnabled="false" />
+	   			</mx:HBox>
+	   			<mx:HBox>
+	   				<mx:TextInput width="160" id="text13" /><mx:Button label="{direction}" paddingLeft="2" width="28" click="loadText(text13)" enabled="{text13.text.length > 0}" tabEnabled="false" />
+	   			</mx:HBox>
+	   			<mx:HBox>
+	   				<mx:TextInput width="160" id="text14" /><mx:Button label="{direction}" paddingLeft="2" width="28" click="loadText(text14)" enabled="{text14.text.length > 0}" tabEnabled="false" />
+	   			</mx:HBox>
+	   			<mx:HBox>
+	   				<mx:TextInput width="160" id="text15" /><mx:Button label="{direction}" paddingLeft="2" width="28" click="loadText(text15)" enabled="{text15.text.length > 0}" tabEnabled="false" />
+	   			</mx:HBox>
+	   			<mx:HBox>
+	   				<mx:TextInput width="160" id="text16" /><mx:Button label="{direction}" paddingLeft="2" width="28" click="loadText(text16)" enabled="{text16.text.length > 0}" tabEnabled="false" />
+	   			</mx:HBox>
+	   			<mx:HBox>
+	   				<mx:TextInput width="160" id="text17" /><mx:Button label="{direction}" paddingLeft="2" width="28" click="loadText(text17)" enabled="{text17.text.length > 0}" tabEnabled="false" />
+	   			</mx:HBox>
+	   			<mx:HBox>
+	   				<mx:TextInput width="160" id="text18" /><mx:Button label="{direction}" paddingLeft="2" width="28" click="loadText(text18)" enabled="{text18.text.length > 0}" tabEnabled="false" />
+	   			</mx:HBox>
+	   			<mx:HBox>
+	   				<mx:TextInput width="160" id="text19" /><mx:Button label="{direction}" paddingLeft="2" width="28" click="loadText(text19)" enabled="{text19.text.length > 0}" tabEnabled="false" />
+	   			</mx:HBox>
+	   			<mx:HBox>
+	   				<mx:TextInput width="160" id="text20" /><mx:Button label="{direction}" paddingLeft="2" width="28" click="loadText(text20)" enabled="{text20.text.length > 0}" tabEnabled="false" />
+	   			</mx:HBox>
+	   		</mx:VBox>
+	   	</mx:HBox>
+	   </mx:VBox>
+	   
+	   	<mx:VBox width="160">
+	   		<mx:VBox>
+	   			<mx:ColorPicker id="textcolorpicker" labelField="T" toolTip="textcolor" selectedColor="{textcolor}" change="textcolor = textcolorpicker.selectedColor;" doubleClickEnabled="true" doubleClick="textcolor = 0xFAFAFA;"  />
+	   			<mx:ColorPicker id="backgroundcolorpicker" toolTip="backgroundcolor" selectedColor="{backgroundcolor}" change="backgroundcolor = backgroundcolorpicker.selectedColor;" doubleClickEnabled="true" doubleClick="backgroundcolor = 0x000000;" />
+	   		</mx:VBox>
+	   		<mx:VBox>
+	   		<mx:Label text="direction"/>
+	   		<mx:VBox>	   		<mx:Button label="&lt;" click="direction = '&lt;';" toolTip="direction" />
+	   		<mx:Button label="-" click="direction = '-';" toolTip="direction" />
+	   		<mx:Button label="^" click="direction = '^';" toolTip="direction" />
+	   		<mx:Button label="v" click="direction = 'v';" toolTip="direction" />
+	   		</mx:VBox>
+	   		<mx:HSlider width="150" id="slide" minimum="1" maximum="5" value="{speed}" snapInterval="1" tickInterval="1" change="speed = slide.value;" dataTipPrecision="0" toolTip="speed"/>
+			</mx:VBox>
+
+	   	</mx:VBox>
+	   	
+	   </mx:HBox>
+   	
+	   </mx:Canvas>
+
+	   <mx:Canvas id="advertisement" visible="false" width="700" height="330" x="40" y="50" backgroundAlpha=".1" backgroundColor="#000000">
+	   		<mx:HBox>
+	   			
+	   		<mx:VBox width="340" height="300">
+	   			<mx:HBox>
+	   				<mx:TextInput width="260" id="ad01" /><mx:Button label="{direction2}" paddingLeft="2" width="28" click="loadText(ad01)" enabled="{ad01.text.length > 0}" tabEnabled="false" />
+	   			</mx:HBox>
+	   			<mx:HBox>
+	   				<mx:TextInput width="260" id="ad02" /><mx:Button label="{direction2}" paddingLeft="2" width="28" click="loadText(ad02)" enabled="{ad02.text.length > 0}" tabEnabled="false" />
+	   			</mx:HBox>
+	   			<mx:HBox>
+	   				<mx:TextInput width="260" id="ad03" /><mx:Button label="{direction2}" paddingLeft="2" width="28" click="loadText(ad03)" enabled="{ad03.text.length > 0}" tabEnabled="false" />
+	   			</mx:HBox>
+	   			<mx:HBox>
+	   				<mx:TextInput width="260" id="ad04" /><mx:Button label="{direction2}" paddingLeft="2" width="28" click="loadText(ad04)" enabled="{ad04.text.length > 0}" tabEnabled="false" />
+	   			</mx:HBox>
+	   			<mx:HBox>
+	   				<mx:TextInput width="260" id="ad05" /><mx:Button label="{direction2}" paddingLeft="2" width="28" click="loadText(ad05)" enabled="{ad05.text.length > 0}" tabEnabled="false" />
+	   			</mx:HBox>
+	   			<mx:HBox>
+	   				<mx:TextInput width="260" id="ad06" /><mx:Button label="{direction2}" paddingLeft="2" width="28" click="loadText(ad06)" enabled="{ad06.text.length > 0}" tabEnabled="false" />
+	   			</mx:HBox>
+	   			<mx:HBox>
+	   				<mx:TextInput width="260" id="ad07" /><mx:Button label="{direction2}" paddingLeft="2" width="28" click="loadText(ad07)" enabled="{ad07.text.length > 0}" tabEnabled="false" />
+	   			</mx:HBox>
+	   			<mx:HBox>
+	   				<mx:TextInput width="260" id="ad08" /><mx:Button label="{direction2}" paddingLeft="2" width="28" click="loadText(ad08)" enabled="{ad08.text.length > 0}" tabEnabled="false" />
+	   			</mx:HBox>
+	   			<mx:HBox>
+	   				<mx:TextInput width="260" id="ad09" /><mx:Button label="{direction2}" paddingLeft="2" width="28" click="loadText(ad09)" enabled="{ad09.text.length > 0}" tabEnabled="false" />
+	   			</mx:HBox>
+	   			<mx:HBox>
+	   				<mx:TextInput width="260" id="ad10" /><mx:Button label="{direction2}" paddingLeft="2" width="28" click="loadText(ad10)" enabled="{ad10.text.length > 0}" tabEnabled="false" />
+	   			</mx:HBox>
+
+	   		</mx:VBox>
+	   
+	   	<mx:VBox width="200">
+	   		<mx:VBox>
+	   			<mx:ColorPicker id="textcolorpicker2" labelField="T" toolTip="textcolor" selectedColor="{textcolor2}" change="textcolor2 = textcolorpicker2.selectedColor;" doubleClickEnabled="true" doubleClick="textcolor2 = 0xFAFAFA;"  />
+	   			<mx:ColorPicker id="backgroundcolorpicker2" toolTip="backgroundcolor" selectedColor="{backgroundcolor2}" change="backgroundcolor2 = backgroundcolorpicker2.selectedColor;" doubleClickEnabled="true" doubleClick="backgroundcolor2 = 0x000000;" />
+	   		</mx:VBox>
+	   		<mx:VBox>
+	   		<mx:Label text="direction"/>
+	   		<mx:VBox>
+	   		<mx:Button label="&lt;" click="direction2 = '&lt;';" toolTip="direction" />
+	   		<mx:Button label="-" click="direction2 = '-';" toolTip="direction" />
+	   		<mx:Button label="^" click="direction2 = '^';" toolTip="direction" />
+	   		<mx:Button label="v" click="direction2 = 'v';" toolTip="direction" />
+	   		<mx:Button label="*" click="direction2 = '*';" toolTip="direction" />
+	   		</mx:VBox>
+	   		</mx:VBox>
+	   		<mx:HSlider width="150" id="slide2" minimum="1" maximum="5" value="{speed2}" snapInterval="1" tickInterval="1" change="speed2 = slide2.value;" dataTipPrecision="0" toolTip="speed"/>
+	   	</mx:VBox>
+
+	   		</mx:HBox>
+	   </mx:Canvas>
+	   	
+	   <mx:Canvas id="others" visible="false" width="700" height="330" x="40" y="50" backgroundAlpha=".1" backgroundColor="#000000">
+	   		<mx:HBox>
+	   			
+	   		<mx:VBox width="340" height="300">
+	   			<mx:HBox>
+	   				<mx:TextInput width="260" id="special01" /><mx:Button label="{direction3}" paddingLeft="2" width="28" click="loadText(special01)" enabled="{special01.text.length > 0}" tabEnabled="false" />
+	   			</mx:HBox>
+	   			<mx:HBox>
+	   				<mx:TextInput width="260" id="special02" /><mx:Button label="{direction3}" paddingLeft="2" width="28" click="loadText(special02)" enabled="{special02.text.length > 0}" tabEnabled="false" />
+	   			</mx:HBox>
+	   			<mx:HBox>
+	   				<mx:TextInput width="260" id="special03" /><mx:Button label="{direction3}" paddingLeft="2" width="28" click="loadText(special03)" enabled="{special03.text.length > 0}" tabEnabled="false" />
+	   			</mx:HBox>
+	   			<mx:HBox>
+	   				<mx:TextInput width="260" id="special04" /><mx:Button label="{direction3}" paddingLeft="2" width="28" click="loadText(special04)" enabled="{special04.text.length > 0}" tabEnabled="false" />
+	   			</mx:HBox>
+	   			<mx:HBox>
+	   				<mx:TextInput width="260" id="special05" /><mx:Button label="{direction3}" paddingLeft="2" width="28" click="loadText(special05)" enabled="{special05.text.length > 0}" tabEnabled="false" />
+	   			</mx:HBox>
+	   			<mx:HBox>
+	   				<mx:TextInput width="260" id="special06" /><mx:Button label="{direction3}" paddingLeft="2" width="28" click="loadText(special06)" enabled="{special06.text.length > 0}" tabEnabled="false" />
+	   			</mx:HBox>
+	   			<mx:HBox>
+	   				<mx:TextInput width="260" id="special07" /><mx:Button label="{direction3}" paddingLeft="2" width="28" click="loadText(special07)" enabled="{special07.text.length > 0}" tabEnabled="false" />
+	   			</mx:HBox>
+	   			<mx:HBox>
+	   				<mx:TextInput width="260" id="special08" /><mx:Button label="{direction3}" paddingLeft="2" width="28" click="loadText(special08)" enabled="{special08.text.length > 0}" tabEnabled="false" />
+	   			</mx:HBox>
+	   			<mx:HBox>
+	   				<mx:TextInput width="260" id="special09" /><mx:Button label="{direction3}" paddingLeft="2" width="28" click="loadText(special09)" enabled="{special09.text.length > 0}" tabEnabled="false" />
+	   			</mx:HBox>
+	   			<mx:HBox>
+	   				<mx:TextInput width="260" id="special10" /><mx:Button label="{direction3}" paddingLeft="2" width="28" click="loadText(special10)" enabled="{special10.text.length > 0}" tabEnabled="false" />
+	   			</mx:HBox>
+
+	   		</mx:VBox>
+	   
+	   	<mx:VBox width="200">
+	   		<mx:VBox>
+	   			<mx:ColorPicker id="textcolorpicker3" labelField="T" toolTip="textcolor" selectedColor="{textcolor3}" change="textcolor3 = textcolorpicker3.selectedColor;" doubleClickEnabled="true" doubleClick="textcolor3 = 0xFAFAFA;"  />
+	   			<mx:ColorPicker id="backgroundcolorpicker3" toolTip="backgroundcolor" selectedColor="{backgroundcolor3}" change="backgroundcolor3 = backgroundcolorpicker3.selectedColor;" doubleClickEnabled="true" doubleClick="backgroundcolor3 = 0x000000;" />
+	   		</mx:VBox>
+	   		<mx:VBox>
+	   		<mx:Label text="direction"/>
+	   		<mx:VBox>
+	   		<mx:Button label="&lt;" click="direction3 = '&lt;';" toolTip="direction" />
+	   		<mx:Button label="-" click="direction3 = '-';" toolTip="direction" />
+	   		<mx:Button label="^" click="direction3 = '^';" toolTip="direction" />
+	   		<mx:Button label="v" click="direction3 = 'v';" toolTip="direction" />
+	   		<mx:Button label="*" click="direction3 = '*';" toolTip="direction" />
+	   		</mx:VBox>
+	   		</mx:VBox>
+	   		<mx:HSlider width="150" id="slide3" minimum="1" maximum="5" value="{speed3}" snapInterval="1" tickInterval="1" change="speed3 = slide3.value;" dataTipPrecision="0" toolTip="speed"/>
+	   	</mx:VBox>
+
+	   		</mx:HBox>
+	   </mx:Canvas>
+	   	
+	   </mx:Canvas>
+	   
+	   
+	</mx:HBox>
+
+	<mx:Canvas includeInLayout="false" width="90" height="100" right="2" bottom="2">
+	   <mx:VBox>
+           <mx:Button id="saveButton" width="70" label="Save" />
+           <mx:Button id="loadButton" width="70" label="Load" />
+           <mx:Spacer height="10" />
+           <mx:Button label="EXIT" width="70" click="NativeApplication.nativeApplication.exit()" />	   	
+	   </mx:VBox>
+	</mx:Canvas>
+
+	   	<mx:Canvas id="mouseHider" x="{fx-32}" y="{fy-32}" width="353" height="96" includeInLayout="false" backgroundColor="#333333" backgroundAlpha="0.5" mouseOver="flash.ui.Mouse.hide(); mouseHider.setStyle('borderThickness', 1);" mouseOut="flash.ui.Mouse.show(); mouseHider.setStyle('borderThickness', 0);" borderStyle="solid" borderThickness="0" borderColor="#AA0000"/>
+	   	<mx:Canvas id="foregroundCanvas" x="{fx}" y="{fy}" width="288" height="32" includeInLayout="false" backgroundColor="#000000" horizontalScrollPolicy="off" verticalScrollPolicy="off" mouseChildren="false" mouseEnabled="false" horizontalScrollPosition="0"  />
+</mx:WindowedApplication>

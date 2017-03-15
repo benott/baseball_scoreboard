@@ -1,0 +1,217 @@
+﻿package 
+{
+    import flash.display.*;
+    import mx.binding.*;
+    import mx.core.*;
+
+    public class _baseballWatcherSetupUtil extends Sprite implements IWatcherSetupUtil
+    {
+
+        public function _baseballWatcherSetupUtil()
+        {
+            return;
+        }// end function
+
+        public function setup(param1:Object, param2:Function, param3:Array, param4:Array) : void
+        {
+            param4[56] = new PropertyWatcher("text19", {propertyChange:true}, [param3[38]], param2);
+            param4[57] = new PropertyWatcher("text", {change:false, textChanged:true}, [param3[38]], null);
+            param4[53] = new PropertyWatcher("text18", {propertyChange:true}, [param3[36]], param2);
+            param4[54] = new PropertyWatcher("text", {change:false, textChanged:true}, [param3[36]], null);
+            param4[93] = new PropertyWatcher("ad10", {propertyChange:true}, [param3[63]], param2);
+            param4[94] = new PropertyWatcher("text", {change:false, textChanged:true}, [param3[63]], null);
+            param4[62] = new PropertyWatcher("textcolor", {propertyChange:true}, [param3[41]], param2);
+            param4[44] = new PropertyWatcher("text15", {propertyChange:true}, [param3[30]], param2);
+            param4[45] = new PropertyWatcher("text", {change:false, textChanged:true}, [param3[30]], null);
+            param4[41] = new PropertyWatcher("text14", {propertyChange:true}, [param3[28]], param2);
+            param4[42] = new PropertyWatcher("text", {change:false, textChanged:true}, [param3[28]], null);
+            param4[133] = new PropertyWatcher("fx", {propertyChange:true}, [param3[92], param3[90]], param2);
+            param4[50] = new PropertyWatcher("text17", {propertyChange:true}, [param3[34]], param2);
+            param4[51] = new PropertyWatcher("text", {change:false, textChanged:true}, [param3[34]], null);
+            param4[134] = new PropertyWatcher("fy", {propertyChange:true}, [param3[93], param3[91]], param2);
+            param4[47] = new PropertyWatcher("text16", {propertyChange:true}, [param3[32]], param2);
+            param4[48] = new PropertyWatcher("text", {change:false, textChanged:true}, [param3[32]], null);
+            param4[5] = new PropertyWatcher("text02", {propertyChange:true}, [param3[4]], param2);
+            param4[6] = new PropertyWatcher("text", {change:false, textChanged:true}, [param3[4]], null);
+            param4[2] = new PropertyWatcher("text01", {propertyChange:true}, [param3[2]], param2);
+            param4[3] = new PropertyWatcher("text", {change:false, textChanged:true}, [param3[2]], null);
+            param4[118] = new PropertyWatcher("special07", {propertyChange:true}, [param3[80]], param2);
+            param4[119] = new PropertyWatcher("text", {change:false, textChanged:true}, [param3[80]], null);
+            param4[121] = new PropertyWatcher("special08", {propertyChange:true}, [param3[82]], param2);
+            param4[122] = new PropertyWatcher("text", {change:false, textChanged:true}, [param3[82]], null);
+            param4[124] = new PropertyWatcher("special09", {propertyChange:true}, [param3[84]], param2);
+            param4[125] = new PropertyWatcher("text", {change:false, textChanged:true}, [param3[84]], null);
+            param4[130] = new PropertyWatcher("textcolor3", {propertyChange:true}, [param3[87]], param2);
+            param4[20] = new PropertyWatcher("text07", {propertyChange:true}, [param3[14]], param2);
+            param4[21] = new PropertyWatcher("text", {change:false, textChanged:true}, [param3[14]], null);
+            param4[23] = new PropertyWatcher("text08", {propertyChange:true}, [param3[16]], param2);
+            param4[24] = new PropertyWatcher("text", {change:false, textChanged:true}, [param3[16]], null);
+            param4[96] = new PropertyWatcher("textcolor2", {propertyChange:true}, [param3[64]], param2);
+            param4[26] = new PropertyWatcher("text09", {propertyChange:true}, [param3[18]], param2);
+            param4[27] = new PropertyWatcher("text", {change:false, textChanged:true}, [param3[18]], null);
+            param4[8] = new PropertyWatcher("text03", {propertyChange:true}, [param3[6]], param2);
+            param4[9] = new PropertyWatcher("text", {change:false, textChanged:true}, [param3[6]], null);
+            param4[127] = new PropertyWatcher("special10", {propertyChange:true}, [param3[86]], param2);
+            param4[128] = new PropertyWatcher("text", {change:false, textChanged:true}, [param3[86]], null);
+            param4[11] = new PropertyWatcher("text04", {propertyChange:true}, [param3[8]], param2);
+            param4[12] = new PropertyWatcher("text", {change:false, textChanged:true}, [param3[8]], null);
+            param4[14] = new PropertyWatcher("text05", {propertyChange:true}, [param3[10]], param2);
+            param4[15] = new PropertyWatcher("text", {change:false, textChanged:true}, [param3[10]], null);
+            param4[17] = new PropertyWatcher("text06", {propertyChange:true}, [param3[12]], param2);
+            param4[18] = new PropertyWatcher("text", {change:false, textChanged:true}, [param3[12]], null);
+            param4[29] = new PropertyWatcher("text10", {propertyChange:true}, [param3[20]], param2);
+            param4[30] = new PropertyWatcher("text", {change:false, textChanged:true}, [param3[20]], null);
+            param4[32] = new PropertyWatcher("text11", {propertyChange:true}, [param3[22]], param2);
+            param4[33] = new PropertyWatcher("text", {change:false, textChanged:true}, [param3[22]], null);
+            param4[98] = new PropertyWatcher("speed2", {propertyChange:true}, [param3[66]], param2);
+            param4[35] = new PropertyWatcher("text12", {propertyChange:true}, [param3[24]], param2);
+            param4[36] = new PropertyWatcher("text", {change:false, textChanged:true}, [param3[24]], null);
+            param4[38] = new PropertyWatcher("text13", {propertyChange:true}, [param3[26]], param2);
+            param4[39] = new PropertyWatcher("text", {change:false, textChanged:true}, [param3[26]], null);
+            param4[132] = new PropertyWatcher("speed3", {propertyChange:true}, [param3[89]], param2);
+            param4[131] = new PropertyWatcher("backgroundcolor3", {propertyChange:true}, [param3[88]], param2);
+            param4[97] = new PropertyWatcher("backgroundcolor2", {propertyChange:true}, [param3[65]], param2);
+            param4[59] = new PropertyWatcher("text20", {propertyChange:true}, [param3[40]], param2);
+            param4[60] = new PropertyWatcher("text", {change:false, textChanged:true}, [param3[40]], null);
+            param4[1] = new PropertyWatcher("direction", {propertyChange:true}, [param3[35], param3[1], param3[33], param3[3], param3[39], param3[5], param3[37], param3[7], param3[9], param3[11], param3[13], param3[15], param3[17], param3[19], param3[21], param3[23], param3[25], param3[27], param3[29], param3[31]], param2);
+            param4[0] = new PropertyWatcher("objectList", {propertyChange:true}, [param3[0]], param2);
+            param4[65] = new PropertyWatcher("direction2", {propertyChange:true}, [param3[50], param3[48], param3[54], param3[52], param3[58], param3[56], param3[46], param3[62], param3[44], param3[60]], param2);
+            param4[99] = new PropertyWatcher("direction3", {propertyChange:true}, [param3[85], param3[69], param3[71], param3[81], param3[83], param3[67], param3[77], param3[79], param3[73], param3[75]], param2);
+            param4[90] = new PropertyWatcher("ad09", {propertyChange:true}, [param3[61]], param2);
+            param4[91] = new PropertyWatcher("text", {change:false, textChanged:true}, [param3[61]], null);
+            param4[87] = new PropertyWatcher("ad08", {propertyChange:true}, [param3[59]], param2);
+            param4[88] = new PropertyWatcher("text", {change:false, textChanged:true}, [param3[59]], null);
+            param4[64] = new PropertyWatcher("speed", {propertyChange:true}, [param3[43]], param2);
+            param4[84] = new PropertyWatcher("ad07", {propertyChange:true}, [param3[57]], param2);
+            param4[85] = new PropertyWatcher("text", {change:false, textChanged:true}, [param3[57]], null);
+            param4[81] = new PropertyWatcher("ad06", {propertyChange:true}, [param3[55]], param2);
+            param4[82] = new PropertyWatcher("text", {change:false, textChanged:true}, [param3[55]], null);
+            param4[78] = new PropertyWatcher("ad05", {propertyChange:true}, [param3[53]], param2);
+            param4[79] = new PropertyWatcher("text", {change:false, textChanged:true}, [param3[53]], null);
+            param4[75] = new PropertyWatcher("ad04", {propertyChange:true}, [param3[51]], param2);
+            param4[76] = new PropertyWatcher("text", {change:false, textChanged:true}, [param3[51]], null);
+            param4[72] = new PropertyWatcher("ad03", {propertyChange:true}, [param3[49]], param2);
+            param4[73] = new PropertyWatcher("text", {change:false, textChanged:true}, [param3[49]], null);
+            param4[69] = new PropertyWatcher("ad02", {propertyChange:true}, [param3[47]], param2);
+            param4[70] = new PropertyWatcher("text", {change:false, textChanged:true}, [param3[47]], null);
+            param4[66] = new PropertyWatcher("ad01", {propertyChange:true}, [param3[45]], param2);
+            param4[67] = new PropertyWatcher("text", {change:false, textChanged:true}, [param3[45]], null);
+            param4[63] = new PropertyWatcher("backgroundcolor", {propertyChange:true}, [param3[42]], param2);
+            param4[100] = new PropertyWatcher("special01", {propertyChange:true}, [param3[68]], param2);
+            param4[101] = new PropertyWatcher("text", {change:false, textChanged:true}, [param3[68]], null);
+            param4[103] = new PropertyWatcher("special02", {propertyChange:true}, [param3[70]], param2);
+            param4[104] = new PropertyWatcher("text", {change:false, textChanged:true}, [param3[70]], null);
+            param4[112] = new PropertyWatcher("special05", {propertyChange:true}, [param3[76]], param2);
+            param4[113] = new PropertyWatcher("text", {change:false, textChanged:true}, [param3[76]], null);
+            param4[115] = new PropertyWatcher("special06", {propertyChange:true}, [param3[78]], param2);
+            param4[116] = new PropertyWatcher("text", {change:false, textChanged:true}, [param3[78]], null);
+            param4[106] = new PropertyWatcher("special03", {propertyChange:true}, [param3[72]], param2);
+            param4[107] = new PropertyWatcher("text", {change:false, textChanged:true}, [param3[72]], null);
+            param4[109] = new PropertyWatcher("special04", {propertyChange:true}, [param3[74]], param2);
+            param4[110] = new PropertyWatcher("text", {change:false, textChanged:true}, [param3[74]], null);
+            param4[56].updateParent(param1);
+            param4[56].addChild(param4[57]);
+            param4[53].updateParent(param1);
+            param4[53].addChild(param4[54]);
+            param4[93].updateParent(param1);
+            param4[93].addChild(param4[94]);
+            param4[62].updateParent(param1);
+            param4[44].updateParent(param1);
+            param4[44].addChild(param4[45]);
+            param4[41].updateParent(param1);
+            param4[41].addChild(param4[42]);
+            param4[133].updateParent(param1);
+            param4[50].updateParent(param1);
+            param4[50].addChild(param4[51]);
+            param4[134].updateParent(param1);
+            param4[47].updateParent(param1);
+            param4[47].addChild(param4[48]);
+            param4[5].updateParent(param1);
+            param4[5].addChild(param4[6]);
+            param4[2].updateParent(param1);
+            param4[2].addChild(param4[3]);
+            param4[118].updateParent(param1);
+            param4[118].addChild(param4[119]);
+            param4[121].updateParent(param1);
+            param4[121].addChild(param4[122]);
+            param4[124].updateParent(param1);
+            param4[124].addChild(param4[125]);
+            param4[130].updateParent(param1);
+            param4[20].updateParent(param1);
+            param4[20].addChild(param4[21]);
+            param4[23].updateParent(param1);
+            param4[23].addChild(param4[24]);
+            param4[96].updateParent(param1);
+            param4[26].updateParent(param1);
+            param4[26].addChild(param4[27]);
+            param4[8].updateParent(param1);
+            param4[8].addChild(param4[9]);
+            param4[127].updateParent(param1);
+            param4[127].addChild(param4[128]);
+            param4[11].updateParent(param1);
+            param4[11].addChild(param4[12]);
+            param4[14].updateParent(param1);
+            param4[14].addChild(param4[15]);
+            param4[17].updateParent(param1);
+            param4[17].addChild(param4[18]);
+            param4[29].updateParent(param1);
+            param4[29].addChild(param4[30]);
+            param4[32].updateParent(param1);
+            param4[32].addChild(param4[33]);
+            param4[98].updateParent(param1);
+            param4[35].updateParent(param1);
+            param4[35].addChild(param4[36]);
+            param4[38].updateParent(param1);
+            param4[38].addChild(param4[39]);
+            param4[132].updateParent(param1);
+            param4[131].updateParent(param1);
+            param4[97].updateParent(param1);
+            param4[59].updateParent(param1);
+            param4[59].addChild(param4[60]);
+            param4[1].updateParent(param1);
+            param4[0].updateParent(param1);
+            param4[65].updateParent(param1);
+            param4[99].updateParent(param1);
+            param4[90].updateParent(param1);
+            param4[90].addChild(param4[91]);
+            param4[87].updateParent(param1);
+            param4[87].addChild(param4[88]);
+            param4[64].updateParent(param1);
+            param4[84].updateParent(param1);
+            param4[84].addChild(param4[85]);
+            param4[81].updateParent(param1);
+            param4[81].addChild(param4[82]);
+            param4[78].updateParent(param1);
+            param4[78].addChild(param4[79]);
+            param4[75].updateParent(param1);
+            param4[75].addChild(param4[76]);
+            param4[72].updateParent(param1);
+            param4[72].addChild(param4[73]);
+            param4[69].updateParent(param1);
+            param4[69].addChild(param4[70]);
+            param4[66].updateParent(param1);
+            param4[66].addChild(param4[67]);
+            param4[63].updateParent(param1);
+            param4[100].updateParent(param1);
+            param4[100].addChild(param4[101]);
+            param4[103].updateParent(param1);
+            param4[103].addChild(param4[104]);
+            param4[112].updateParent(param1);
+            param4[112].addChild(param4[113]);
+            param4[115].updateParent(param1);
+            param4[115].addChild(param4[116]);
+            param4[106].updateParent(param1);
+            param4[106].addChild(param4[107]);
+            param4[109].updateParent(param1);
+            param4[109].addChild(param4[110]);
+            return;
+        }// end function
+
+        public static function init(param1:IFlexModuleFactory) : void
+        {
+            baseball.watcherSetupUtil = new _baseballWatcherSetupUtil;
+            return;
+        }// end function
+
+    }
+}

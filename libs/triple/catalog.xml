@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding ="utf-8"?>
+<swc xmlns="http://www.adobe.com/flash/swccatalog/9">
+  <versions>
+    <swc version="1.2" />
+    <flash version="10.0" build="d544" platform="MAC" />
+  </versions>
+  <features>
+    <feature-script-deps />
+    <feature-files />
+  </features>
+  <libraries>
+    <library path="library.swf">
+      <script name="mx/core/mx_internal" mod="1146523398000" >
+        <def id="mx.core:mx_internal" /> 
+        <dep id="AS3" type="n" /> 
+      </script>
+      <script name="mx/core/IStateClient" mod="1185825125000" >
+        <def id="mx.core:IStateClient" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="mx/managers/IFocusManagerComponent" mod="1182369904000" >
+        <def id="mx.managers:IFocusManagerComponent" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="mx/automation/IAutomationObject" mod="1182369703000" >
+        <def id="mx.automation:IAutomationObject" /> 
+        <dep id="flash.events:Event" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="mx/core/IConstraintClient" mod="1188589376000" >
+        <def id="mx.core:IConstraintClient" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="mx/core/IInvalidating" mod="1150233077000" >
+        <def id="mx.core:IInvalidating" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="mx/core/IChildList" mod="1149255249000" >
+        <def id="mx.core:IChildList" /> 
+        <dep id="flash.display:DisplayObject" type="s" /> 
+        <dep id="flash.geom:Point" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="mx/core/IFlexModuleFactory" mod="1185825071000" >
+        <def id="mx.core:IFlexModuleFactory" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="mx/core/ComponentDescriptor" mod="1149112409000" >
+        <def id="mx.core:ComponentDescriptor" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="mx.core:mx_internal" type="n" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="mx/core/DragSource" mod="1149694704000" >
+        <def id="mx.core:DragSource" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="mx.core:mx_internal" type="n" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="mx/events/PropertyChangeEventKind" mod="1149796273000" >
+        <def id="mx.events:PropertyChangeEventKind" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="mx.core:mx_internal" type="n" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="mx/managers/IFocusManager" mod="1191005122000" >
+        <def id="mx.managers:IFocusManager" /> 
+        <dep id="mx.managers:IFocusManagerComponent" type="s" /> 
+        <dep id="flash.display:InteractiveObject" type="s" /> 
+        <dep id="mx.core:IUIComponent" type="s" /> 
+        <dep id="flash.display:Sprite" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="mx/managers/IFocusManagerContainer" mod="1150207146000" >
+        <def id="mx.managers:IFocusManagerContainer" /> 
+        <dep id="mx.managers:ISystemManager" type="s" /> 
+        <dep id="flash.display:DisplayObject" type="s" /> 
+        <dep id="mx.managers:IFocusManager" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.events:IEventDispatcher" type="i" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="mx/core/IFlexDisplayObject" mod="1149200749000" >
+        <def id="mx.core:IFlexDisplayObject" /> 
+        <dep id="flash.display:DisplayObjectContainer" type="s" /> 
+        <dep id="flash.display:DisplayObject" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.events:IEventDispatcher" type="i" /> 
+        <dep id="flash.display:IBitmapDrawable" type="i" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="mx/events/MoveEvent" mod="1150087695000" >
+        <def id="mx.events:MoveEvent" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="mx.core:mx_internal" type="n" /> 
+        <dep id="flash.events:Event" type="i" /> 
+      </script>
+      <script name="mx/events/StateChangeEvent" mod="1149206364000" >
+        <def id="mx.events:StateChangeEvent" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="mx.core:mx_internal" type="n" /> 
+        <dep id="flash.events:Event" type="i" /> 
+      </script>
+      <script name="mx/events/ResizeEvent" mod="1150087635000" >
+        <def id="mx.events:ResizeEvent" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="mx.core:mx_internal" type="n" /> 
+        <dep id="flash.events:Event" type="i" /> 
+      </script>
+      <script name="mx/events/ToolTipEvent" mod="1150132131000" >
+        <def id="mx.events:ToolTipEvent" /> 
+        <dep id="mx.core:IToolTip" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="mx.core:mx_internal" type="n" /> 
+        <dep id="flash.events:Event" type="i" /> 
+      </script>
+      <script name="mx/events/FlexEvent" mod="1182369867000" >
+        <def id="mx.events:FlexEvent" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="mx.core:mx_internal" type="n" /> 
+        <dep id="flash.events:Event" type="i" /> 
+      </script>
+      <script name="mx/events/PropertyChangeEvent" mod="1149879771000" >
+        <def id="mx.events:PropertyChangeEvent" /> 
+        <dep id="mx.events:PropertyChangeEventKind" type="e" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="mx.core:mx_internal" type="n" /> 
+        <dep id="flash.events:Event" type="i" /> 
+      </script>
+      <script name="mx/managers/ISystemManager" mod="1182369908000" >
+        <def id="mx.managers:ISystemManager" /> 
+        <dep id="mx.managers:IFocusManagerContainer" type="s" /> 
+        <dep id="flash.text:TextFormat" type="s" /> 
+        <dep id="flash.geom:Rectangle" type="s" /> 
+        <dep id="flash.display:Stage" type="s" /> 
+        <dep id="flash.display:LoaderInfo" type="s" /> 
+        <dep id="flash.display:Sprite" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="mx.core:IFlexModuleFactory" type="i" /> 
+        <dep id="flash.events:IEventDispatcher" type="i" /> 
+        <dep id="mx.core:IChildList" type="i" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="mx/core/UIComponentDescriptor" mod="1149784081000" >
+        <def id="mx.core:UIComponentDescriptor" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="mx.core:mx_internal" type="n" /> 
+        <dep id="mx.core:ComponentDescriptor" type="i" /> 
+      </script>
+      <script name="mx/managers/IToolTipManagerClient" mod="1146518802000" >
+        <def id="mx.managers:IToolTipManagerClient" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="Object" type="i" /> 
+        <dep id="mx.core:IFlexDisplayObject" type="i" /> 
+      </script>
+      <script name="mx/core/IUIComponent" mod="1188511099000" >
+        <def id="mx.core:IUIComponent" /> 
+        <dep id="mx.managers:ISystemManager" type="s" /> 
+        <dep id="flash.display:DisplayObjectContainer" type="s" /> 
+        <dep id="flash.geom:Rectangle" type="s" /> 
+        <dep id="flash.display:DisplayObject" type="s" /> 
+        <dep id="flash.display:Sprite" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="Object" type="i" /> 
+        <dep id="mx.core:IFlexDisplayObject" type="i" /> 
+      </script>
+      <script name="mx/events/DragEvent" mod="1182369866000" >
+        <def id="mx.events:DragEvent" /> 
+        <dep id="flash.events:Event" type="s" /> 
+        <dep id="mx.core:DragSource" type="s" /> 
+        <dep id="mx.core:IUIComponent" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="mx.core:mx_internal" type="n" /> 
+        <dep id="flash.events:MouseEvent" type="i" /> 
+      </script>
+      <script name="mx/events/FlexMouseEvent" mod="1148318971000" >
+        <def id="mx.events:FlexMouseEvent" /> 
+        <dep id="flash.events:Event" type="s" /> 
+        <dep id="flash.display:InteractiveObject" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="mx.core:mx_internal" type="n" /> 
+        <dep id="flash.events:MouseEvent" type="i" /> 
+      </script>
+      <script name="mx/core/IDeferredInstantiationUIComponent" mod="1149722730000" >
+        <def id="mx.core:IDeferredInstantiationUIComponent" /> 
+        <dep id="mx.core:UIComponentDescriptor" type="s" /> 
+        <dep id="mx.core:IFlexDisplayObject" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="mx.core:IUIComponent" type="i" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="mx/core/IToolTip" mod="1149203558000" >
+        <def id="mx.core:IToolTip" /> 
+        <dep id="flash.geom:Rectangle" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="mx.core:IUIComponent" type="i" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="mx/flash/UIMovieClip" mod="1192596260000" >
+        <def id="mx.flash:UIMovieClip" /> 
+        <dep id="flash.events:Event" type="e" /> 
+        <dep id="flash.ui:Keyboard" type="e" /> 
+        <dep id="mx.events:FlexMouseEvent" type="e" /> 
+        <dep id="flash.display:DisplayObjectContainer" type="e" /> 
+        <dep id="flash.display:InteractiveObject" type="e" /> 
+        <dep id="mx.events:ToolTipEvent" type="e" /> 
+        <dep id="Math" type="e" /> 
+        <dep id="mx.core:IInvalidating" type="e" /> 
+        <dep id="mx.core:IUIComponent" type="e" /> 
+        <dep id="flash.system:ApplicationDomain" type="e" /> 
+        <dep id="mx.events:StateChangeEvent" type="e" /> 
+        <dep id="mx.managers:ISystemManager" type="e" /> 
+        <dep id="mx.events:ResizeEvent" type="e" /> 
+        <dep id="mx.events:MoveEvent" type="e" /> 
+        <dep id="flash.events:FocusEvent" type="e" /> 
+        <dep id="mx.events:FlexEvent" type="e" /> 
+        <dep id="mx.events:PropertyChangeEvent" type="e" /> 
+        <dep id="mx.events:DragEvent" type="e" /> 
+        <dep id="flash.events:Event" type="s" /> 
+        <dep id="mx.core:UIComponentDescriptor" type="s" /> 
+        <dep id="flash.display:DisplayObjectContainer" type="s" /> 
+        <dep id="flash.geom:Rectangle" type="s" /> 
+        <dep id="flash.display:InteractiveObject" type="s" /> 
+        <dep id="mx.core:IUIComponent" type="s" /> 
+        <dep id="mx.core:IFlexDisplayObject" type="s" /> 
+        <dep id="mx.events:StateChangeEvent" type="s" /> 
+        <dep id="mx.managers:ISystemManager" type="s" /> 
+        <dep id="mx.events:ResizeEvent" type="s" /> 
+        <dep id="mx.events:MoveEvent" type="s" /> 
+        <dep id="flash.display:DisplayObject" type="s" /> 
+        <dep id="flash.events:FocusEvent" type="s" /> 
+        <dep id="flash.display:Sprite" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="mx.core:mx_internal" type="n" /> 
+        <dep id="mx.managers:IFocusManagerComponent" type="i" /> 
+        <dep id="mx.core:IDeferredInstantiationUIComponent" type="i" /> 
+        <dep id="flash.events:IEventDispatcher" type="i" /> 
+        <dep id="mx.core:IConstraintClient" type="i" /> 
+        <dep id="mx.managers:IToolTipManagerClient" type="i" /> 
+        <dep id="flash.display:MovieClip" type="i" /> 
+        <dep id="mx.automation:IAutomationObject" type="i" /> 
+        <dep id="mx.core:IStateClient" type="i" /> 
+      </script>
+      <script name="triple" mod="1252654978940" >
+        <def id="triple" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="mx.flash:UIMovieClip" type="i" /> 
+      </script>
+      <script name="mx/flash/ContainerMovieClip" mod="1186099503000" >
+        <def id="mx.flash:ContainerMovieClip" /> 
+        <dep id="mx.flash:FlexContentHolder" type="e" /> 
+        <dep id="flash.display:DisplayObjectContainer" type="s" /> 
+        <dep id="mx.flash:FlexContentHolder" type="s" /> 
+        <dep id="flash.events:FocusEvent" type="s" /> 
+        <dep id="mx.core:IUIComponent" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="mx.flash:UIMovieClip" type="i" /> 
+      </script>
+      <script name="mx/flash/FlexContentHolder" mod="1192597011000" >
+        <def id="mx.flash:FlexContentHolder" /> 
+        <dep id="flash.display:InteractiveObject" type="e" /> 
+        <dep id="flash.display:DisplayObject" type="e" /> 
+        <dep id="Math" type="e" /> 
+        <dep id="flash.utils:getDefinitionByName" type="e" /> 
+        <dep id="Error" type="e" /> 
+        <dep id="flash.display:DisplayObjectContainer" type="s" /> 
+        <dep id="mx.core:IUIComponent" type="s" /> 
+        <dep id="Error" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="mx.core:mx_internal" type="n" /> 
+        <dep id="mx.flash:ContainerMovieClip" type="i" /> 
+      </script>
+    </library>
+  </libraries>
+  <files>
+  </files>
+</swc>
